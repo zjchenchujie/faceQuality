@@ -1,0 +1,159 @@
+##
+## ****************************************************************************
+##
+##            Copyright(c), HIKDATA.All Rights Reserved
+##
+## file         : 
+##              :
+## brief        : 
+##              :
+##              :
+## author       :justin@hikdata.com
+## version      :
+## change history:
+## ****************************************************************************
+##
+
+## ----------------------------------------------------------------------------
+## ----------------------------------------------------------------------------
+
+ifeq ($(strip $(PLATFORM)), linux32_gcc)
+	STRIP_TOOL = strip
+	CPP_TOOL = g++
+	CC_TOOL = gcc
+	LD_TOOL = ld
+	AR_TOOL = ar
+
+	LDFLAGS += -lpthread
+
+	AFLAGS += crus
+	
+	SFLAGS +=  
+	
+	CFLAGS += -Wall
+	CFLAGS += -O3
+	CFLAGS += -fPIC
+	CFLAGS += -D_REENTRANT
+	CFLAGS += -DLINUX
+	CFLAGS += -m32
+	CFLAGS += -fvisibility=hidden
+
+endif
+
+ifeq ($(strip $(PLATFORM)), linux64_gcc)
+	STRIP_TOOL = strip
+	CPP_TOOL = g++ -g
+	CC_TOOL = gcc -g
+	LD_TOOL = ld
+	AR_TOOL = ar
+	IIFLAGS += 
+	LDFLAGS += -lpthread
+
+	AFLAGS += crusU
+	
+	SFLAGS +=  
+	
+	CFLAGS += -Wall
+	CFLAGS += -O3
+	CFLAGS += -fPIC
+	CFLAGS += -D_REENTRANT
+	CFLAGS += -DLINUX
+	CFLAGS += -DAIA_OS_BIT64
+	CFLAGS += -fvisibility=hidden
+	CFLAGS += -std=c++11
+	
+endif
+
+# X86_32
+ifeq ($(strip $(PLATFORM)), linux32)
+	STRIP_TOOL = strip
+	CPP_TOOL = icpc
+	CC_TOOL = icc
+	LD_TOOL = ld
+	AR_TOOL = ar
+
+	LDFLAGS += -lpthread
+
+	AFLAGS += crus
+	
+	SFLAGS +=  
+	
+	CFLAGS += -Wall
+	CFLAGS += -O3
+	CFLAGS += -fPIC
+	CFLAGS += -D_REENTRANT
+	CFLAGS += -DLINUX
+	CFLAGS += -use-msasm
+	CFLAGS += -fvisibility=hidden
+	
+endif
+
+# X86_64
+ifeq ($(strip $(PLATFORM)), linux64)
+	STRIP_TOOL = strip
+	CPP_TOOL = icpc
+	CC_TOOL = icc
+	LD_TOOL = ld
+	AR_TOOL = ar
+
+	LDFLAGS += -lpthread
+
+	AFLAGS += crus
+	
+	SFLAGS +=  
+	
+	CFLAGS += -Wall
+	CFLAGS += -O3
+	CFLAGS += -fPIC
+	CFLAGS += -D_REENTRANT
+	CFLAGS += -DLINUX
+	CFLAGS += -use-msasm
+	CFLAGS += -fvisibility=hidden
+	
+endif
+
+#NVIDA_TX1
+ifeq ($(strip $(PLATFORM)), nvidia_tx1)
+	CROSS = /usr/bin/aarch64-linux-gnu-
+	STRIP_TOOL = strip
+	CPP_TOOL = g++
+	CC_TOOL = gcc
+	LD_TOOL = ld
+	AR_TOOL = ar
+	IIFLAGS += 
+	LDFLAGS += -lpthread
+
+	AFLAGS += crus
+	
+	SFLAGS +=  
+	
+	CFLAGS += -Wall
+	CFLAGS += -O3
+	CFLAGS += -fPIC
+	CFLAGS += -D_REENTRANT
+	CFLAGS += -DLINUX
+	CFLAGS += -DAIA_OS_BIT64
+	CFLAGS += -fvisibility=hidden
+	CFLAGS += -std=c++11
+	
+endif
+
+## ----------------------------------------------------------------------------
+## ∞Ê±æ–≈œ¢
+## ----------------------------------------------------------------------------
+#CFLAGS += -D'SVNREV="$(shell svnversion -n $(ROOT_DIR))"'
+
+STRIP	= $(CROSS)$(STRIP_TOOL)
+CPP	= $(CROSS)$(CPP_TOOL)
+CC	= $(CROSS)$(CC_TOOL)
+LD	= $(CROSS)$(LD_TOOL)
+AR  = $(CROSS)$(AR_TOOL)
+AS  = $(CROSS)$(AS_TOOL)
+RM	= rm -f
+
+
+
+
+
+
+
